@@ -166,7 +166,7 @@ $('#save-swalath-btn').on('click', function() {
     }
 });
 
-var gcode = 'https://script.google.com/macros/s/AKfycbwwyBlpCOGIer2oUuROwNKpcPYSFsTazW-mrm6Wj-CnTBDe6zX6cj2dNAayJe1asMVL/exec';
+var gcode = 'https://script.google.com/macros/s/AKfycbycgwATNzIRPwN8xBp-Q_qJQWzzyjKWl7A8GWWDBA9qWZq-Ns5vakBs-Xh-IGhr4cuT/exec';
 
     var xtraDetails = Object.keys(bowser).filter(function (key) {
         if (bowser[key] === true) {
