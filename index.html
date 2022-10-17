@@ -69,24 +69,24 @@
   <body class="text-center">
     
 <main class="form-signin w-100 m-auto">
-  <form>
-    <h1 class="h3 mb-3 fw-normal">ചൊല്ലിയ സ്വലാത്തുകളുടെ എണ്ണം താഴെ ചേര്‍ക്കുക</h1>
+  <form id="swalathAddForm">
+    <h1 class="h4 mb-3 fw-normal">ചൊല്ലിയ സ്വലാത്തുകളുടെ എണ്ണം താഴെ ചേര്‍ക്കുക</h1>
 
     <div class="form-floating">
-      <div class="form-group text-start">
-        <input type="text" class="form-control mb-2" id="nameInput" placeholder="നിങ്ങളുടെ പേര്">
+      <div class="form-group text-start mb-3">
+        <input type="text" class="form-control" id="nameInput" name="nameInput" disabled="disabled" placeholder="നിങ്ങളുടെ പേര്">
       </div>
-      <div class="form-group text-start">
-        <input type="number" class="form-control mb-2" id="phoneInput" placeholder="ഫോണ്‍ നമ്പര്‍">
+      <div class="form-group text-start mb-3">
+        <input type="number" class="form-control" id="phoneInput" name="phoneInput" disabled="disabled" placeholder="ഫോണ്‍ നമ്പര്‍">
       </div>
-      <div class="form-group text-start">
-        <input type="number" class="form-control mb-2 swalath-input" id="swalathInput" placeholder="സ്വലാത്തുകളുടെ എണ്ണം">
+      <div class="form-group text-start mb-3">
+        <input type="number" class="form-control swalath-input" name="swalathInput" disabled="disabled" id="swalathInput" placeholder="സ്വലാത്തുകളുടെ എണ്ണം">
       </div>
     </div>
 
-    <button class="w-100 btn btn-lg btn-primary" type="button" id="save-swalath-btn">Save</button>
-
-    <div id="totalSwalathView" class="total-swalath-view my-3"><h6 class="mb-0">ആകെ ഇതുവരെ ചൊല്ലിയ സ്വലാത്തുകള്‍: </h6><span></span></div>
+    <button class="w-100 btn btn-lg btn-primary" type="button" id="save-swalath-btn" disabled="disabled">Save</button>
+    <div id="yourTotalSwalathView" class="total-swalath-view my-3"><h6 class="mb-0">നിങ്ങള്‍ ഇതുവരെ ചൊല്ലിയ സ്വലാത്തുകള്‍: </h6><span>-</span></div>
+    <div id="totalSwalathView" class="total-swalath-view my-3 d-none"><h6 class="mb-0">ആകെ ഇതുവരെ ചൊല്ലിയ സ്വലാത്തുകള്‍: </h6><span></span></div>
   </form>
 </main>
 
@@ -94,6 +94,7 @@
 <script src="assets/dist/js/jquery-3.6.1.min.js"></script>
 <script src="assets/dist/js/bowser.js"></script>
 <script src="assets/dist/js/fingerprint2.min.js"></script>
+<script src="assets/dist/js/jquery.validate.min.js"></script>
 <script src="assets/dist/js/custom.js"></script>
 
 
