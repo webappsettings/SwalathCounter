@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Swalath Counter">
+    <title>Swalath Counter</title>
+
+
+    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    
+<main class="form-signin w-100 m-auto">
+  <form>
+    <img class="mb-4" src="assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">ചൊല്ലിയ സ്വലാത്തുകളുടെ എണ്ണം താഴെ ചേര്‍ക്കുക</h1>
+
+    <div class="form-floating">
+      <div class="form-group text-start">
+        <input type="text" class="form-control mb-2" id="nameInput" placeholder="നിങ്ങളുടെ പേര്">
+      </div>
+      <div class="form-group text-start">
+        <input type="number" class="form-control mb-2" id="phoneInput" placeholder="ഫോണ്‍ നമ്പര്‍">
+      </div>
+      <div class="form-group text-start">
+        <input type="number" class="form-control mb-2" id="swalathInput" placeholder="സ്വലാത്തുകളുടെ എണ്ണം">
+      </div>
+    </div>
+
+    <div id="totalSwalathView" class="d-flex align-items-center mb-3"><h6 class="mb-0">ഇതുവരെ ചൊല്ലിയ സ്വലാത്തുകള്‍: </h6><span></span></div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="button" id="save-swalath-btn">Save</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+  </form>
+</main>
+
+
+<script src="assets/dist/js/jquery-3.6.1.min.js"></script>
+<script src="assets/dist/js/bowser.js"></script>
+<script src="assets/dist/js/fingerprint2.min.js"></script>
+
+  <script type="text/javascript">
+
+    var xtraDetails = Object.keys(bowser).filter(function (key) {
+        if (bowser[key] === true) {
+          return bowser[key];
+        }
+      });
+
+      var xtraDetails = JSON.stringify(xtraDetails).replace(/[{}]/g, "").replace(/,/g, "  ").replace(/\"/g, "");
+      var browserDetect = bowser.name + "-" + bowser.version + "  " + bowser.osname + (bowser.osversion ? "-" + bowser.osversion : '') + " " + xtraDetails;
+      console.log('browserDetect=', browserDetect);
+
+      var systemcode
+
+      var getSystemCode = new Fingerprint2();
+      getSystemCode.get(function(result, components) {
+
+        systemcode = result
+
+        console.log(result)
+      });
+
+    $('#save-swalath-btn').on('click', function() {
+
+
+      var getName = $('#nameInput').val()
+      var getPhone = $('#phoneInput').val()
+      var getSwalath = $('#swalathInput').val()
+
+      let formdata = new FormData()
+      formdata.append('action', 'vw')
+      formdata.append('name', getName)
+      formdata.append('phone', getPhone)
+      formdata.append('swalath', getSwalath)
+      formdata.append('bowser', browserDetect)
+      formdata.append('systemcode', systemcode)
+
+      $.ajax({
+         method: 'POST',
+         url: 'https://script.google.com/macros/s/AKfycbyOdRoM_PEBhULAFUyA6XlwmGWcnqiRmwyn_B26FrtlxDwYGu5L-4O3iCUI0t936c8y/exec',
+         data: formdata,
+         dataType: 'json',
+         contentType: false,
+         processData: false,
+         beforeSend: function(){
+          console.log('before send')
+            // $('.loader').fadeIn()
+          }
+        })
+        .done(function(callback){
+          // callback = JSON.parse(callback.result)
+
+          $('#totalSwalathView span').html(callback.result)
+          $('#swalathInput').val('')
+
+          console.log('result= ',callback)
+          /*if(!callback.result) {
+          
+
+          }*/ 
+
+        })
+        .fail(function(callback) {
+        })
+       .always(function(){
+          // $('.loader').fadeOut()
+          console.log('after send')
+        });
+  })
+</script>
+  
+
+
+
+    
+  </body>
+</html>
