@@ -150,6 +150,7 @@ $('#save-swalath-btn').on('click', function() {
               // $('#totalSwalathView').removeClass('d-none');
 
               console.log('result= ',callback)
+              $('#yourTotalSwalathView').removeClass('d-none');
               $('#yourTotalSwalathView span').text(callback.result.YourSwalath);
               $('#totalSwalathView span').text(callback.result.TotalSwalath);
               $('#swalathInput').val('')
