@@ -204,14 +204,16 @@ var gcode = 'https://script.google.com/macros/s/AKfycbwwyBlpCOGIer2oUuROwNKpcPYS
             .done(function(callback){
               // console.log(callback)
               if(callback.result == "false") {
-
+                $('#yourTotalSwalathView span').text('0');
               } else {
-                $('#nameInput').val(callback.result.Name).prop('disabled', false);
-                $('#phoneInput').val(callback.result.Phone).prop('disabled', false);
-                $('#swalathInput').prop('disabled', false);
+                $('#nameInput').val(callback.result.Name);
+                $('#phoneInput').val(callback.result.Phone);
                 $('#yourTotalSwalathView span').text(callback.result.Swalath);
               }
-              $('#save-swalath-btn').prop('disabled', false);
+                $('#nameInput').prop('disabled', false);
+                $('#phoneInput').prop('disabled', false);
+                $('#swalathInput').prop('disabled', false);
+                $('#save-swalath-btn').prop('disabled', false);
             })
             .fail(function(callback) {
             })
