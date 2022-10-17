@@ -147,7 +147,7 @@ $('#save-swalath-btn').on('click', function() {
             })
             .done(function(callback){
               // callback = JSON.parse(callback.result)
-              $('#totalSwalathView').removeClass('d-none');
+              // $('#totalSwalathView').removeClass('d-none');
 
               console.log('result= ',callback)
               $('#yourTotalSwalathView span').text(callback.result.YourSwalath);
