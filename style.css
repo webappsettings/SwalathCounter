@@ -23,3 +23,18 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.total-swalath-view {
+  color: #646464;
+  font-weight: 700;
+  font-size: 12px;
+}
+.total-swalath-view h6 {
+  font-size: 12px;
+}
+
+.swalath-input {
+    height: 50px;
+    font-size: 25px;
+    font-weight: 700;
+}
