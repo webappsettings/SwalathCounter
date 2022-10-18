@@ -253,7 +253,8 @@ $('#save-swalath-btn').on('click', function() {
     }
 });
 
-var gcode = 'https://script.google.com/macros/s/AKfycbzOmT2rEYVlFcECHwu5M8gYNb_VGEaDkIRquglj4pBdvXm2AafFYYc1j6NkqN-E9iDk/exec';
+var gc = 'AKfycbyfx6DD1LtKfvlmEhP4Zy4ZKEfMIBuHPccGahzIUwnIrGd_rDD1nSvJ4lpqd6djOlGx';
+var gcode = 'https://script.google.com/macros/s/'+gc+'/exec';
 
     var xtraDetails = Object.keys(bowser).filter(function (key) {
         if (bowser[key] === true) {
@@ -302,6 +303,8 @@ var gcode = 'https://script.google.com/macros/s/AKfycbzOmT2rEYVlFcECHwu5M8gYNb_V
                 $('#phoneInput').val(callback.result.Phone);
                 $('#yourTotalSwalathView').removeClass('d-none');
                 $('#yourTotalSwalathView span').text(callback.result.Swalath);
+                $('#totalSwalathView').removeClass('d-none');
+                $('#totalSwalathView span').text(callback.result.TotalSwalath);
               }
                 $('#nameInput').prop('disabled', false);
                 $('#phoneInput').prop('disabled', false);
