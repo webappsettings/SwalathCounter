@@ -74,6 +74,40 @@
 //----mycode end
 
 
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;SameSite=None; Secure";
+  //alert(document.cookie)
+}
+
+function setCookieOne(cname, cvalue) {
+  const d = new Date();
+  d.setTime(d.getTime() + (10 * 1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;SameSite=None; Secure";
+  //document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  //alert(document.cookie)
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+
 
 var swalathAddFormValidator = $("#swalathAddForm").validate({
       ignore: "",
@@ -119,6 +153,18 @@ var swalathAddFormValidator = $("#swalathAddForm").validate({
   
 });
 
+
+var timer = setInterval(function() {
+  console.log(getCookie('mytimeout'))
+  if (getCookie('mytimeout') == '') {
+    clearInterval(timer);
+  }
+  console.log('post-interval'); //this will still run after clearing
+}, 100);
+
+
+
+
 $('#save-swalath-btn').on('click', function() {
     if($("#swalathAddForm").valid()) {
       var getName = $('#nameInput').val()
@@ -133,6 +179,8 @@ $('#save-swalath-btn').on('click', function() {
           formdata.append('bowser', browserDetect)
           formdata.append('systemcode', systemcode)
 
+
+
           $.ajax({
              method: 'POST',
              url: gcode,
@@ -141,13 +189,16 @@ $('#save-swalath-btn').on('click', function() {
              contentType: false,
              processData: false,
              beforeSend: function(){
-              console.log('before send')
                 // $('.loader').fadeIn()
               }
             })
             .done(function(callback){
               // callback = JSON.parse(callback.result)
               // $('#totalSwalathView').removeClass('d-none');
+
+              setCookie('ph', getPhone, 20);
+              setCookieOne('mytimeout', '-');
+
 
               console.log('result= ',callback)
               $('#yourTotalSwalathView').removeClass('d-none');
@@ -167,7 +218,7 @@ $('#save-swalath-btn').on('click', function() {
     }
 });
 
-var gcode = 'https://script.google.com/macros/s/AKfycbx_1-dMVpf5Q08xU7FFr-y3Dq6aCViDTY86BFx7uZ6DH3hF_baBW9PRcY5EoCCSZO1m/exec';
+var gcode = 'https://script.google.com/macros/s/AKfycbxSCzGi3mvrxg5cHbTwZ8B7JAF1tvg1FTVGKeaC35gPqmA_UAP1b35NRi02PvZnm8Oz/exec';
 
     var xtraDetails = Object.keys(bowser).filter(function (key) {
         if (bowser[key] === true) {
@@ -186,11 +237,19 @@ var gcode = 'https://script.google.com/macros/s/AKfycbx_1-dMVpf5Q08xU7FFr-y3Dq6a
 
         systemcode = result
 
+        var getLocalPh = getCookie('ph');
 
+        //alert(getLocalPh)
 
         var formdata = new FormData()
           formdata.append('action', 'chk')
           formdata.append('systemcode', systemcode)
+          if (getLocalPh != "" && getLocalPh != null) {
+            formdata.append('localph', getLocalPh)
+          } else {
+            formdata.append('localph', '')
+          }
+          
 
           $.ajax({
              method: 'POST',
@@ -216,6 +275,8 @@ var gcode = 'https://script.google.com/macros/s/AKfycbx_1-dMVpf5Q08xU7FFr-y3Dq6a
                 $('#phoneInput').prop('disabled', false);
                 $('#swalathInput').prop('disabled', false);
                 $('#save-swalath-btn').prop('disabled', false);
+
+
             })
             .fail(function(callback) {
             })
