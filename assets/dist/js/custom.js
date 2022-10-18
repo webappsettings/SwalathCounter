@@ -284,7 +284,7 @@ var gcode = 'https://script.google.com/macros/s/'+gc+'/exec';
             formdata.append('localph', '')
           }
           
-          if(getCookie('mytimeout')){
+          if(getCookie('ph')){
           $.ajax({
              method: 'POST',
              url: gcode,
