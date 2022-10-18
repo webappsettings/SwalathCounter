@@ -155,7 +155,6 @@ var swalathAddFormValidator = $("#swalathAddForm").validate({
 
 
 var timer = setInterval(function() {
-    console.log(getCookie('mytimeout'))
     if (getCookie('mytimeout') == '') {
       clearInterval(timer);
       $('#nameInput').prop('disabled',false);
@@ -208,7 +207,6 @@ $('#save-swalath-btn').on('click', function() {
               setCookieOne('mytimeout', '-');
 
 
-              console.log('result= ',callback)
               $('#yourTotalSwalathView').removeClass('d-none');
               $('#yourTotalSwalathView span').text(callback.result.YourSwalath);
               $('#totalSwalathView span').text(callback.result.TotalSwalath);
@@ -222,7 +220,6 @@ $('#save-swalath-btn').on('click', function() {
               }*/ 
 
               var timer = setInterval(function() {
-                console.log(getCookie('mytimeout'))
                 if (getCookie('mytimeout') == '') {
                   clearInterval(timer);
                   $('#nameInput').prop('disabled',false);
@@ -257,7 +254,6 @@ var gcode = 'https://script.google.com/macros/s/AKfycbzOmT2rEYVlFcECHwu5M8gYNb_V
 
       var xtraDetails = JSON.stringify(xtraDetails).replace(/[{}]/g, "").replace(/,/g, "  ").replace(/\"/g, "");
       var browserDetect = bowser.name + "-" + bowser.version + "  " + bowser.osname + (bowser.osversion ? "-" + bowser.osversion : '') + " " + xtraDetails;
-      // console.log('browserDetect=', browserDetect);
 
       var systemcode
 
@@ -291,9 +287,7 @@ var gcode = 'https://script.google.com/macros/s/AKfycbzOmT2rEYVlFcECHwu5M8gYNb_V
               }
             })
             .done(function(callback){
-              // console.log(callback)
               if(callback.result == "false") {
-                //$('#yourTotalSwalathView span').text('0');
               } else {
                 $('#nameInput').val(callback.result.Name);
                 $('#phoneInput').val(callback.result.Phone);
