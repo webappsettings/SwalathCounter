@@ -27,16 +27,16 @@
        return keyFunction(event);
      }         
      function keyFunction(event){
-       if (event.keyCode == 123) {
+      /* if (event.keyCode == 123) {
          return false;
-       }
+       }*/
        if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
          return false;
        }
        if (event.ctrlKey && event.shiftKey && event.keyCode == 74) {
          return false;
        }
-       if (event.keyCode == 83) {
+       if (event.ctrlKey && event.shiftKey && event.keyCode == 83) {
          return false;
        }
        if (event.ctrlKey && event.keyCode == 85) {
