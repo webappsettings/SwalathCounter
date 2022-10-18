@@ -305,6 +305,7 @@ var gcode = 'https://script.google.com/macros/s/'+gc+'/exec';
                 $('#yourTotalSwalathView span').text(callback.result.Swalath);
                 $('#totalSwalathView').removeClass('d-none');
                 $('#totalSwalathView span').text(callback.result.TotalSwalath);
+                $('#swalathInput').focus();
               }
                 $('#nameInput').prop('disabled', false);
                 $('#phoneInput').prop('disabled', false);

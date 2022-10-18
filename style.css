@@ -35,8 +35,9 @@ input[type=number] {
 
 .swalath-input {
     height: 50px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
+    border: solid 2px #bdbde1;
 }
 
 .form-group span.error {
