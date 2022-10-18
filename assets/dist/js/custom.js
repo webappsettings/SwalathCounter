@@ -284,7 +284,7 @@ var gcode = 'https://script.google.com/macros/s/'+gc+'/exec';
             formdata.append('localph', '')
           }
           
-
+          if(getCookie('mytimeout')){
           $.ajax({
              method: 'POST',
              url: gcode,
@@ -320,6 +320,13 @@ var gcode = 'https://script.google.com/macros/s/'+gc+'/exec';
            .always(function(){
              $('.loader-bg').fadeOut();
             });
+         } else {
+            $('#nameInput').prop('disabled', false);
+              $('#phoneInput').prop('disabled', false);
+              $('#swalathInput').prop('disabled', false);
+              $('#save-swalath-btn').prop('disabled', false);
+              $('.loader-bg').fadeOut();
+         }
       });
 
 
