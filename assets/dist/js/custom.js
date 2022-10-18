@@ -1,7 +1,7 @@
 
     //mycode start-----
 
-    /*setTimeout(startMycode, 1000);
+    setTimeout(startMycode, 1000);
 
     function startMycode() {
       if (document.addEventListener) {
@@ -69,7 +69,7 @@
       document.execCommand("copy");
       inpFld.remove(inpFld);
     }
-  }*/
+  }
        
 //----mycode end
 
@@ -84,7 +84,7 @@ function setCookie(cname, cvalue, exdays) {
 
 function setCookieOne(cname, cvalue) {
   const d = new Date();
-  d.setTime(d.getTime() + (10 * 1000));
+  d.setTime(d.getTime() + (30 * 1000));
   let expires = "expires="+ d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;SameSite=None; Secure";
   //document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
@@ -155,12 +155,20 @@ var swalathAddFormValidator = $("#swalathAddForm").validate({
 
 
 var timer = setInterval(function() {
-  console.log(getCookie('mytimeout'))
-  if (getCookie('mytimeout') == '') {
-    clearInterval(timer);
-  }
-  console.log('post-interval'); //this will still run after clearing
-}, 100);
+    console.log(getCookie('mytimeout'))
+    if (getCookie('mytimeout') == '') {
+      clearInterval(timer);
+      $('#nameInput').prop('disabled',false);
+      $('#phoneInput').prop('disabled',false);
+      $('#swalathInput').prop('disabled',false);
+      $('#save-swalath-btn').text('സേവ്').prop('disabled',false);
+    } else {
+      $('#save-swalath-btn').text('സേവ് ചെയ്തു').prop('disabled',true);
+      $('#nameInput').prop('disabled',true);
+      $('#phoneInput').prop('disabled',true);
+      $('#swalathInput').prop('disabled',true);
+    }
+  }, 100);
 
 
 
@@ -205,8 +213,31 @@ $('#save-swalath-btn').on('click', function() {
               $('#yourTotalSwalathView span').text(callback.result.YourSwalath);
               $('#totalSwalathView span').text(callback.result.TotalSwalath);
               $('#swalathInput').val('')
+
+              /*$('#save-swalath-btn').text('സേവ് ചെയ്തു').prop('disabled',true);
+              $('#nameInput').prop('disabled',true);
+              $('#phoneInput').prop('disabled',true);
+              $('#swalathInput').prop('disabled',true);*/
               /*if(!callback.result) {
               }*/ 
+
+              var timer = setInterval(function() {
+                console.log(getCookie('mytimeout'))
+                if (getCookie('mytimeout') == '') {
+                  clearInterval(timer);
+                  $('#nameInput').prop('disabled',false);
+                  $('#phoneInput').prop('disabled',false);
+                  $('#swalathInput').prop('disabled',false);
+                  $('#save-swalath-btn').text('സേവ്').prop('disabled',false);
+                } else {
+                  $('#save-swalath-btn').text('സേവ് ചെയ്തു').prop('disabled',true);
+                  $('#nameInput').prop('disabled',true);
+                  $('#phoneInput').prop('disabled',true);
+                  $('#swalathInput').prop('disabled',true);
+                }
+              }, 100);
+
+
             })
             .fail(function(callback) {
             })
@@ -277,7 +308,7 @@ var gcode = 'https://script.google.com/macros/s/AKfycbzOmT2rEYVlFcECHwu5M8gYNb_V
 
             })
             .fail(function(callback) {
-              
+
             })
            .always(function(){
              $('.loader-bg').fadeOut();
