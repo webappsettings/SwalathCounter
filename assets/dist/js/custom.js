@@ -189,7 +189,7 @@ $('#save-swalath-btn').on('click', function() {
              contentType: false,
              processData: false,
              beforeSend: function(){
-                // $('.loader').fadeIn()
+                $('.loader-bg').fadeIn()
               }
             })
             .done(function(callback){
@@ -207,13 +207,11 @@ $('#save-swalath-btn').on('click', function() {
               $('#swalathInput').val('')
               /*if(!callback.result) {
               }*/ 
-
             })
             .fail(function(callback) {
             })
            .always(function(){
-              // $('.loader').fadeOut()
-              // console.log('after send')
+              $('.loader-bg').fadeOut();
             });
     }
 });
@@ -239,7 +237,6 @@ var gcode = 'https://script.google.com/macros/s/AKfycbxSCzGi3mvrxg5cHbTwZ8B7JAF1
 
         var getLocalPh = getCookie('ph');
 
-        //alert(getLocalPh)
 
         var formdata = new FormData()
           formdata.append('action', 'chk')
@@ -259,6 +256,7 @@ var gcode = 'https://script.google.com/macros/s/AKfycbxSCzGi3mvrxg5cHbTwZ8B7JAF1
              contentType: false,
              processData: false,
              beforeSend: function(){
+              $('.loader-bg').fadeIn();
               }
             })
             .done(function(callback){
@@ -279,9 +277,10 @@ var gcode = 'https://script.google.com/macros/s/AKfycbxSCzGi3mvrxg5cHbTwZ8B7JAF1
 
             })
             .fail(function(callback) {
+              
             })
            .always(function(){
-             
+             $('.loader-bg').fadeOut();
             });
       });
 
