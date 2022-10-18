@@ -73,6 +73,13 @@
        
 //----mycode end
 
+  $(".allownumericwithoutdecimal").on("keypress keyup blur",function (event) {    
+           $(this).val($(this).val().replace(/[^\d].+/, ""));
+            if ((event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+
 
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
@@ -84,7 +91,7 @@ function setCookie(cname, cvalue, exdays) {
 
 function setCookieOne(cname, cvalue) {
   const d = new Date();
-  d.setTime(d.getTime() + (30 * 1000));
+  d.setTime(d.getTime() + (20 * 1000));
   let expires = "expires="+ d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;SameSite=None; Secure";
   //document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
@@ -167,7 +174,7 @@ var timer = setInterval(function() {
       $('#phoneInput').prop('disabled',true);
       $('#swalathInput').prop('disabled',true);
     }
-  }, 100);
+  }, 1000);
 
 
 
@@ -202,15 +209,17 @@ $('#save-swalath-btn').on('click', function() {
             .done(function(callback){
               // callback = JSON.parse(callback.result)
               // $('#totalSwalathView').removeClass('d-none');
+              // console.log(callback.result.TotalSwalath)
 
               setCookie('ph', getPhone, 20);
               setCookieOne('mytimeout', '-');
 
 
-              $('#yourTotalSwalathView').removeClass('d-none');
+              $('#yourTotalSwalathView, #totalSwalathView').removeClass('d-none');
               $('#yourTotalSwalathView span').text(callback.result.YourSwalath);
               $('#totalSwalathView span').text(callback.result.TotalSwalath);
               $('#swalathInput').val('')
+
 
               /*$('#save-swalath-btn').text('സേവ് ചെയ്തു').prop('disabled',true);
               $('#nameInput').prop('disabled',true);
@@ -232,7 +241,7 @@ $('#save-swalath-btn').on('click', function() {
                   $('#phoneInput').prop('disabled',true);
                   $('#swalathInput').prop('disabled',true);
                 }
-              }, 100);
+              }, 1000);
 
 
             })
