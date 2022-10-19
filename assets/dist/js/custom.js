@@ -75,7 +75,7 @@
 
 
 var localExpiryDate = 20;
-var localExpiryFastSec = 2;
+var localExpiryFastSec = 10;
 var getLocalyI;
 
 
