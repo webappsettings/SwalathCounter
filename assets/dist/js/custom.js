@@ -307,6 +307,8 @@ $('#save-swalath-btn').on('click', function() {
 
 
 
+
+
           var getLocalPh = getCookie('ph');
           if (getLocalPh != "" && getLocalPh != null) {
             formdata.append('localph', getLocalPh)
@@ -314,12 +316,18 @@ $('#save-swalath-btn').on('click', function() {
             formdata.append('localph', '')
           }
 
-          getLocalyI = getCookie('yI');
-          if (getLocalyI != "" && getLocalyI != null) {
-            formdata.append('localyI', getLocalyI)
-          } else {
-            formdata.append('localyI', '')
-          }
+
+          var getLocalyI = getCookie(getLocalPh)
+            if (getLocalyI != "" && getLocalyI != null) {
+              formdata.append('localyI', getLocalyI)
+            } else {
+                getLocalyI = getCookie('yI');
+              if (getLocalyI != "" && getLocalyI != null) {
+                formdata.append('localyI', getLocalyI)
+              } else {
+                formdata.append('localyI', '')
+              }
+            }
 
         if (getLocalyI != "" && getLocalyI != null) {
 
