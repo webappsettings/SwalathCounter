@@ -74,7 +74,7 @@
 //----mycode end
 
 
-var localExpiryDate = 3;
+var localExpiryDate = 20;
 var localExpiryFastSec = 10;
 var getLocalyI;
 
@@ -182,7 +182,7 @@ var timer = setInterval(function() {
 
 
 
-var gc = 'AKfycbxaB7byLwtqdfUuA01NqvQ_eQ_9M3zSRzvlQhmVnTKApktBKxrKkT0LVeVeIXNqqZxK';
+var gc = 'AKfycbwz_xx0AYk3Q989wy5G2kUveSyx3CoyvzobEPJEKQNhiTIw3E42PSZHHlecbkpq9lX8';
 var gcode = 'https://script.google.com/macros/s/'+gc+'/exec';
 
 
@@ -226,9 +226,6 @@ $('#save-swalath-btn').on('click', function() {
              contentType: false,
              processData: false,
              beforeSend: function(){
-                $('#nameInput').prop('disabled',true);
-                $('#phoneInput').prop('disabled',true);
-                $('#save-swalath-btn').text('സേവ് ചെയ്തു').prop('disabled',true);
                 $('.loader-bg').fadeIn()
               }
             })
