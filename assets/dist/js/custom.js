@@ -73,6 +73,12 @@
        
 //----mycode end
 
+
+var localExpiryDate = 20;
+var localExpiryFastSec = 2;
+var getLocalyI;
+
+
   $(".allownumericwithoutdecimal").on("keypress keyup blur",function (event) {    
            $(this).val($(this).val().replace(/[^\d].+/, ""));
             if ((event.which < 48 || event.which > 57)) {
@@ -86,16 +92,14 @@ function setCookie(cname, cvalue, exdays) {
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
   let expires = "expires="+ d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;SameSite=None; Secure";
-  //alert(document.cookie)
 }
 
-function setCookieOne(cname, cvalue) {
+function setCookieOne(cname, cvalue, fastSec) {
   const d = new Date();
-  d.setTime(d.getTime() + (20 * 1000));
+  d.setTime(d.getTime() + (fastSec * 1000));
   let expires = "expires="+ d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;SameSite=None; Secure";
   //document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-  //alert(document.cookie)
 }
 
 function getCookie(cname) {
@@ -178,6 +182,9 @@ var timer = setInterval(function() {
 
 
 
+var gc = 'AKfycbyoNdt3uU-HqmjNV34cqfs0c7QYQLrb9h9V_x_q5Ifx5PtNpqi3fEFSlpuopIlbnxM';
+var gcode = 'https://script.google.com/macros/s/'+gc+'/exec';
+
 
 $('#save-swalath-btn').on('click', function() {
     if($("#swalathAddForm").valid()) {
@@ -187,12 +194,29 @@ $('#save-swalath-btn').on('click', function() {
 
           let formdata = new FormData()
           formdata.append('action', 'vw')
+
+
+           var getLocalyI = getCookie(getPhone)
+            if (getLocalyI != "" && getLocalyI != null) {
+              formdata.append('localyI', getLocalyI)
+            } else {
+                getLocalyI = getCookie('yI');
+              if (getLocalyI != "" && getLocalyI != null) {
+                formdata.append('localyI', getLocalyI)
+              } else {
+                formdata.append('localyI', '')
+              }
+            }
+
+          
+
+          //formdata.append('yourLocalIndex', getCookie('yI'))
+
           formdata.append('name', getName)
           formdata.append('phone', getPhone)
           formdata.append('swalath', getSwalath)
           formdata.append('bowser', browserDetect)
           formdata.append('systemcode', systemcode)
-
 
 
           $.ajax({
@@ -209,10 +233,14 @@ $('#save-swalath-btn').on('click', function() {
             .done(function(callback){
               // callback = JSON.parse(callback.result)
               // $('#totalSwalathView').removeClass('d-none');
-              // console.log(callback.result.TotalSwalath)
+              // console.log(callback.result)
 
-              setCookie('ph', getPhone, 20);
-              setCookieOne('mytimeout', '-');
+              setCookie('ph', getPhone, localExpiryDate);
+              setCookie('yI', callback.result.yourIndex, localExpiryDate);
+              setCookie(getPhone, callback.result.yourIndex, localExpiryDate);
+
+              setCookieOne('mytimeout', '-', localExpiryFastSec);
+
 
 
               $('#yourTotalSwalathView, #totalSwalathView').removeClass('d-none');
@@ -253,8 +281,6 @@ $('#save-swalath-btn').on('click', function() {
     }
 });
 
-var gc = 'AKfycbyfx6DD1LtKfvlmEhP4Zy4ZKEfMIBuHPccGahzIUwnIrGd_rDD1nSvJ4lpqd6djOlGx';
-var gcode = 'https://script.google.com/macros/s/'+gc+'/exec';
 
     var xtraDetails = Object.keys(bowser).filter(function (key) {
         if (bowser[key] === true) {
@@ -272,19 +298,31 @@ var gcode = 'https://script.google.com/macros/s/'+gc+'/exec';
 
         systemcode = result
 
-        var getLocalPh = getCookie('ph');
+        
 
 
         var formdata = new FormData()
           formdata.append('action', 'chk')
           formdata.append('systemcode', systemcode)
+
+
+
+          var getLocalPh = getCookie('ph');
           if (getLocalPh != "" && getLocalPh != null) {
             formdata.append('localph', getLocalPh)
           } else {
             formdata.append('localph', '')
           }
-          
-          if(getCookie('ph')){
+
+          getLocalyI = getCookie('yI');
+          if (getLocalyI != "" && getLocalyI != null) {
+            formdata.append('localyI', getLocalyI)
+          } else {
+            formdata.append('localyI', '')
+          }
+
+        if (getLocalyI != "" && getLocalyI != null) {
+
           $.ajax({
              method: 'POST',
              url: gcode,
@@ -299,6 +337,7 @@ var gcode = 'https://script.google.com/macros/s/'+gc+'/exec';
             .done(function(callback){
               if(callback.result == "false") {
               } else {
+                setCookie('yI', callback.result.yourIndex, localExpiryDate);
                 $('#nameInput').val(callback.result.Name);
                 $('#phoneInput').val(callback.result.Phone);
                 $('#yourTotalSwalathView').removeClass('d-none');
@@ -311,7 +350,6 @@ var gcode = 'https://script.google.com/macros/s/'+gc+'/exec';
                 $('#phoneInput').prop('disabled', false);
                 $('#swalathInput').prop('disabled', false);
                 $('#save-swalath-btn').prop('disabled', false);
-
 
             })
             .fail(function(callback) {
