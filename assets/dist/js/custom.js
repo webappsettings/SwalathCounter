@@ -182,7 +182,7 @@ var timer = setInterval(function() {
 
 
 
-var gc = 'AKfycbwlBBUkdIjwEsqhYlFfQC_F0VY17HpXFMooCI_BnrwfNDxpRm9JRG-S6LFsaM5N0Bgn';
+var gc = 'AKfycbwZf-gWsqIdpe1Lsn2OvF7R9smiNRDPKcgLXb5cmIx_jTQfg52Quqnrc1R30N0YKuBe';
 var gcode = 'https://script.google.com/macros/s/'+gc+'/exec';
 
 
