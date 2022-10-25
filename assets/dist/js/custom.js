@@ -165,6 +165,9 @@ var swalathAddFormValidator = $("#swalathAddForm").validate({
 });
 
 
+
+
+
 var timer = setInterval(function() {
     if (getCookie('mytimeout') == '') {
       clearInterval(timer);
@@ -268,6 +271,8 @@ $('#save-swalath-btn').on('click', function() {
                   $('#swalathInput').prop('disabled',false);
                   $('#save-swalath-btn').text('സേവ്').prop('disabled',false);
                 } else {
+                  $('.person-detail-view').slideUp();
+                  $('#detail-edit-btn').removeClass('d-none');
                   $('#save-swalath-btn').text('സേവ് ചെയ്തു').prop('disabled',true);
                   $('#nameInput').prop('disabled',true);
                   $('#phoneInput').prop('disabled',true);
@@ -356,6 +361,10 @@ $('#save-swalath-btn').on('click', function() {
                 $('#yourTotalSwalathView span').text(callback.result.Swalath);
                 $('#totalSwalathView').removeClass('d-none');
                 $('#totalSwalathView span').text(callback.result.TotalSwalath);
+
+                $('.person-detail-view').slideUp();
+                $('#detail-edit-btn').removeClass('d-none');
+
                 $('#swalathInput').focus();
 
                 if(callback.result.OldSwalath != '') {
@@ -385,5 +394,10 @@ $('#save-swalath-btn').on('click', function() {
          }
       });
 
+
+$('#detail-edit-btn').on('click', function() {
+  $(this).addClass('d-none');
+  $('.person-detail-view').slideDown();
+})
 
       

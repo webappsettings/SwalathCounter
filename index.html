@@ -78,14 +78,16 @@
     <h1 class="h4 mb-3 fw-normal">ചൊല്ലിയ സ്വലാത്തുകളുടെ എണ്ണം താഴെ ചേര്‍ക്കുക</h1>
 
     <div class="form-floating">
-      <div class="form-group text-start mb-3">
-        <input type="text" class="form-control" id="nameInput" name="nameInput" disabled="disabled" placeholder="നിങ്ങളുടെ പേര്">
-      </div>
-      <div class="form-group text-start mb-3">
-        <input type="number" class="form-control allownumericwithoutdecimal" id="phoneInput" name="phoneInput" disabled="disabled" placeholder="ഫോണ്‍ നമ്പര്‍">
-      </div>
-      <div class="form-group text-start mb-3">
-        <input type="number" class="form-control swalath-input allownumericwithoutdecimal" name="swalathInput" disabled="disabled" id="swalathInput" placeholder="സ്വലാത്തുകളുടെ എണ്ണം?">
+      <div class="person-detail-view">
+        <div class="form-group text-start mb-3">
+          <input type="text" class="form-control" id="nameInput" name="nameInput" disabled="disabled" placeholder="നിങ്ങളുടെ പേര്">
+        </div>
+        <div class="form-group text-start mb-3">
+          <input type="number" class="form-control allownumericwithoutdecimal" id="phoneInput" name="phoneInput" disabled="disabled" placeholder="ഫോണ്‍ നമ്പര്‍">
+        </div>
+        </div>
+        <div class="form-group text-start mb-3">
+          <input type="number" class="form-control swalath-input allownumericwithoutdecimal" name="swalathInput" disabled="disabled" id="swalathInput" placeholder="സ്വലാത്തുകളുടെ എണ്ണം?">
       </div>
     </div>
 
@@ -96,7 +98,11 @@
     <div id="yourTotalSwalathView" class="d-none text-success your-total-swalath-view my-3"><h6 class="mb-0">നിങ്ങള്‍ ഇതുവരെ ചൊല്ലിയത്: </h6><span class="text-success">-</span></div>
 
     <div id="totalSwalathView" class="d-none total-swalath-view my-3"><h6 class="mb-0">ഇതുവരെ ചേര്‍ത്ത സ്വലാത്തുകളുടെ<br> ആകെ എണ്ണം: </h6><span class="text-success"></span></div>
-  </form>
+
+    <button type="button" class="btn btn-link d-none" id="detail-edit-btn" style="
+    font-size: 11px;">നിങ്ങളുടെ പേര്, ഫോണ്&zwj;നമ്പര്&zwj; മാറ്റം വരുത്തണമെകില്&zwj; ഇവിടെ ക്ലിക്ക് ചെയ്യുക</button>
+
+      </form>
 </main>
 
 
