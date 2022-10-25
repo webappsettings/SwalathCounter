@@ -74,7 +74,7 @@
 //----mycode end
 
 
-var localExpiryDate = 3;
+var localExpiryDate = 30;
 var localExpiryFastSec = 5;
 var getLocalyI;
 
@@ -182,7 +182,7 @@ var timer = setInterval(function() {
 
 
 
-var gc = 'AKfycbyB5aSjwteQyjQe69gXO1uVjWeA9J17xoQU5tc9vDOzdiYEI5DRVe6zFMg69_MIM2lW';
+var gc = 'AKfycbz8b-KOvdncYRwbSquyb1tf0mVJ4gRTqfXnHbICutFLlTUDIzSLIG5h0J2pXp_6w2A';
 var gcode = 'https://script.google.com/macros/s/'+gc+'/exec';
 
 
@@ -245,10 +245,12 @@ $('#save-swalath-btn').on('click', function() {
 
 
 
-              $('#yourTotalSwalathView, #totalSwalathView').removeClass('d-none');
+              $('#yourTotalSwalathView, #totalSwalathView, #oldSwalathView').removeClass('d-none');
               $('#yourTotalSwalathView span').text(callback.result.YourSwalath);
               $('#totalSwalathView span').text(callback.result.TotalSwalath);
               $('#swalathInput').val('')
+
+              $('#oldSwalathView span').text(callback.result.OldSwalath);
 
 
               /*$('#save-swalath-btn').text('സേവ് ചെയ്തു').prop('disabled',true);
@@ -355,6 +357,12 @@ $('#save-swalath-btn').on('click', function() {
                 $('#totalSwalathView').removeClass('d-none');
                 $('#totalSwalathView span').text(callback.result.TotalSwalath);
                 $('#swalathInput').focus();
+
+                if(callback.result.OldSwalath != '') {
+                  $('#oldSwalathView').removeClass('d-none');
+                  $('#oldSwalathView span').text(callback.result.OldSwalath);
+                }
+                
               }
                 $('#nameInput').prop('disabled', false);
                 $('#phoneInput').prop('disabled', false);
