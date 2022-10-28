@@ -63,6 +63,12 @@ input[type=number] {
     border: solid 2px #bdbde1;
 }
 
+span.error {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+}
+
 .form-group span.error {
   font-size: 12px;
 }
