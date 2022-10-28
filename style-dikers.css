@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@200;300;400;500&display=swap');
+html,
+body {
+  font-family: 'Anek Malayalam', sans-serif;
+  margin: 0; 
+}
+
+.save-dikers-btn {
+  box-shadow: 0px 3px 10px #00000059;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.total-dikers-view {
+  color: #646464;
+  font-weight: 700;
+  
+}
+.total-dikers-view h6 {
+  font-size: 13px;
+}
+.old-dikers-view h6 {
+  font-size: 12px;
+  color: #646464;
+}
+
+.your-total-dikers-view {
+  color: #646464;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px;
+    border-radius: 6px;
+    border: solid 1px #b7b7b7;
+}
+
+.your-total-dikers-view h6 {
+  font-size: 15px;
+}
+
+.dikers-input {
+    height: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    border: solid 2px #bdbde1;
+}
+
+.form-group span.error {
+  font-size: 12px;
+}
+
+.loader-bg {
+  position: fixed;
+  background-color: #ffffffb8;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.loader {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px solid #e4e4e4;
+  border-radius: 50%;
+  border-top: 3px solid blue;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 1s linear infinite;
+  z-index: 9999; }
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg); } }
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } 
+  }
+  .top-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #d50462;
+    color: white;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 3px;
+    width: 100%;
+  }
+
+#yourTotalDikersView span {
+  font-size: 17px;
+    background-color: #d4fad6;
+    padding: 5px 10px;
+    margin-top: 5px;
+    display: inline-block;
+    border-radius: 10px;
+}
