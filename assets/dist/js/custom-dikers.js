@@ -169,7 +169,7 @@ var dikersAddFormValidator = $("#dikersAddForm").validate({
 
 
 var timer = setInterval(function() {
-    if (getCookie('mytimeout') == '') {
+    if (getCookie('d-mytimeout') == '') {
       clearInterval(timer);
       $('#nameInput').prop('disabled',false);
       $('#phoneInput').prop('disabled',false);
@@ -199,13 +199,15 @@ $('#save-dikers-btn').on('click', function() {
           formdata.append('action', 'vw')
 
 
-           var getLocalyI = getCookie(getPhone)
+           var getLocalyI = getCookie('d-'+getPhone)
             if (getLocalyI != "" && getLocalyI != null) {
               formdata.append('localyI', getLocalyI)
             } else {
-                getLocalyI = getCookie('yI');
+                getLocalyI = getCookie('d-yI');
               if (getLocalyI != "" && getLocalyI != null) {
-                formdata.append('localyI', getLocalyI)
+                var brkgetLocalyI = getLocalyI.split('-')[1];
+                alert(brkgetLocalyI)
+                formdata.append('localyI', brkgetLocalyI)
               } else {
                 formdata.append('localyI', '')
               }
@@ -240,11 +242,11 @@ $('#save-dikers-btn').on('click', function() {
               // $('#totalDikersView').removeClass('d-none');
               console.log(callback.result)
 
-              setCookie('ph', getPhone, localExpiryDate);
-              setCookie('yI', callback.result.yourIndex, localExpiryDate);
-              setCookie(getPhone, callback.result.yourIndex, localExpiryDate);
+              setCookie('d-ph', getPhone, localExpiryDate);
+              setCookie('d-yI', callback.result.yourIndex, localExpiryDate);
+              setCookie('d-'+getPhone, callback.result.yourIndex, localExpiryDate);
 
-              setCookieOne('mytimeout', '-', localExpiryFastSec);
+              setCookieOne('d-mytimeout', '-', localExpiryFastSec);
 
 
 
@@ -264,7 +266,7 @@ $('#save-dikers-btn').on('click', function() {
               }*/ 
 
               var timer = setInterval(function() {
-                if (getCookie('mytimeout') == '') {
+                if (getCookie('d-mytimeout') == '') {
                   clearInterval(timer);
                   $('#nameInput').prop('disabled',false);
                   $('#phoneInput').prop('disabled',false);
@@ -318,24 +320,32 @@ $('#save-dikers-btn').on('click', function() {
 
 
 
-          var getLocalPh = getCookie('ph');
+          var getLocalPh = getCookie('d-ph');
           if (getLocalPh != "" && getLocalPh != null) {
-            formdata.append('localph', getLocalPh)
+            var brkgetLocalPh = getLocalPh.split('-')[1];
+            formdata.append('localph', brkgetLocalPh)
           } else {
             formdata.append('localph', '')
           }
 
 
-          var getLocalyI = getCookie(getLocalPh)
+          var getLocalyI = getCookie('d-'+getLocalPh)
             if (getLocalyI != "" && getLocalyI != null) {
-              formdata.append('localyI', getLocalyI)
+
+                var brkgetLocalyI = getLocalyI.split('-')[1];
+                alert(brkgetLocalyI)
+
+              formdata.append('localyI', brkgetLocalyI)
             } else {
-                getLocalyI = getCookie('yI');
+                formdata.append('localyI', '')
+                /*getLocalyI = getCookie('d-yI');
               if (getLocalyI != "" && getLocalyI != null) {
+                var brkgetLocalyI = getLocalyI.split('-')[1];
+                alert(brkgetLocalyI)
                 formdata.append('localyI', getLocalyI)
               } else {
                 formdata.append('localyI', '')
-              }
+              }*/
             }
 
         if (getLocalyI != "" && getLocalyI != null) {
@@ -354,7 +364,7 @@ $('#save-dikers-btn').on('click', function() {
             .done(function(callback){
               if(callback.result == "false") {
               } else {
-                setCookie('yI', callback.result.yourIndex, localExpiryDate);
+                setCookie('d-yI', callback.result.yourIndex, localExpiryDate);
                 $('#nameInput').val(callback.result.Name);
                 $('#phoneInput').val(callback.result.Phone);
                 $('#yourTotalDikersView').removeClass('d-none');

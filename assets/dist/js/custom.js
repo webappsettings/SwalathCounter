@@ -138,10 +138,12 @@ var swalathAddFormValidator = $("#swalathAddForm").validate({
           phoneInput: {
             required: true,
             number: true,
+            minlength: 10
           },
           swalathInput: {
             required: true,
             number: true,
+            maxlength: 6
           },
       },
       messages: {
@@ -151,10 +153,12 @@ var swalathAddFormValidator = $("#swalathAddForm").validate({
           phoneInput: {
               required: "നിങ്ങളുടെ ഫോണ്‍ നമ്പര്‍ ചേര്‍ക്കുക",
               number: "നിങ്ങളുടെ ഫോണ്‍ നമ്പര്‍ ചേര്‍ക്കുക",
+              minlength: "നിങ്ങള്‍ കൊടുത്തിരിക്കുന്ന ഫോണ്‍ നമ്പര്‍ ശരിയല്ല. ദയവായി ശരിയാക്കൂ",
           },
           swalathInput: {
               required: "നിങ്ങള്‍ ചൊല്ലിയ സ്വലാത്തുകളുടെ എണ്ണം ചേര്‍ക്കുക",
               number: "നിങ്ങള്‍ ചൊല്ലിയ സ്വലാത്തുകളുടെ എണ്ണം ചേര്‍ക്കുക",
+              maxlength: "നിങ്ങള്‍ കൊടുത്തിരിക്കുന്ന സ്വലാത്തുകളുടെ എണ്ണം ശരിയല്ല. ദയവായി ശരിയാക്കൂ"
           },
           
       },
@@ -287,6 +291,11 @@ $('#save-swalath-btn').on('click', function() {
            .always(function(){
               $('.loader-bg').fadeOut();
             });
+    } else {
+      if($('#phoneInput').hasClass('error')){
+        $('.person-detail-view').slideDown();
+        $('#phoneInput.error').focus();
+      }
     }
 });
 
