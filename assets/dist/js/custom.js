@@ -143,7 +143,7 @@ var swalathAddFormValidator = $("#swalathAddForm").validate({
           swalathInput: {
             required: true,
             number: true,
-            maxlength: 6
+            maxlength: 8
           },
       },
       messages: {
